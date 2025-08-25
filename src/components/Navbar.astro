@@ -12,18 +12,18 @@ import Icon from '../components/Icons.astro';
           <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
             <Icon name="logo" class="text-white w-5 h-5" />
           </div>
-          <span class="text-xl font-bold text-gray-900">ShopFlow</span>
+          <span class="text-xl font-bold text-gray-900 hidden sm:block">E-Obchod</span>
         </a>
       </div>
 
       <!-- Desktop Navigation -->
       <div class="hidden md:block">
         <div class="ml-10 flex items-baseline space-x-8">
-          <a href="/" class="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200">Home</a>
-          <a href="/products" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200">Products</a>
-          <a href="/categories" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200">Categories</a>
-          <a href="/deals" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200">Deals</a>
-          <a href="/about" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200">About</a>
+          <a href="/" class="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200">Domů</a>
+          <a href="/products" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200">Produkty</a>
+          <a href="/categories" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200">Kategorie</a>
+          <a href="/deals" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200">Slevy</a>
+          <a href="/about" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200">O Nás</a>
         </div>
       </div>
 
@@ -35,7 +35,7 @@ import Icon from '../components/Icons.astro';
           </div>
           <input 
             type="search" 
-            placeholder="Search products..." 
+            placeholder="Vyhledej produkt..." 
             class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg leading-5 bg-gray-50 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
           >
         </div>
@@ -67,8 +67,9 @@ import Icon from '../components/Icons.astro';
         </button>
 
         <!-- Mobile Menu Button -->
-        <button class="md:hidden text-gray-600 hover:text-blue-600 p-2 transition-colors duration-200" id="mobile-menu-btn">
-          <Icon name="menuOpen" class="w-5 h-5" />
+        <button class="md:hidden text-gray-600 hover:text-blue-600 p-2 transition-colors duration-200" id="menu-button">
+          <div id="menu-open"><Icon name="menuOpen" class="w-5 h-5" /></div>
+          <div class="hidden" id="menu-close"><Icon name="menuClose" class="w-5 h-5" /></div>
         </button>
       </div>
     </div>
@@ -84,41 +85,41 @@ import Icon from '../components/Icons.astro';
             </div>
             <input 
               type="search" 
-              placeholder="Search products..." 
+              placeholder="Vyhledej produkt..." 
               class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg leading-5 bg-gray-50 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
           </div>
         </div>
         
         <!-- Mobile Links -->
-        <a href="/" class="text-gray-900 hover:bg-gray-50 block px-3 py-2 text-base font-medium rounded-md">Home</a>
-        <a href="/products" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 block px-3 py-2 text-base font-medium rounded-md">Products</a>
-        <a href="/categories" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 block px-3 py-2 text-base font-medium rounded-md">Categories</a>
-        <a href="/deals" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 block px-3 py-2 text-base font-medium rounded-md">Deals</a>
-        <a href="/about" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 block px-3 py-2 text-base font-medium rounded-md">About</a>
+        <a href="/" class="text-gray-900 hover:bg-gray-50 block px-3 py-2 text-base font-medium rounded-md">Domů</a>
+        <a href="/products" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 block px-3 py-2 text-base font-medium rounded-md">Produkt</a>
+        <a href="/categories" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 block px-3 py-2 text-base font-medium rounded-md">Kategorie</a>
+        <a href="/deals" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 block px-3 py-2 text-base font-medium rounded-md">Slevy</a>
+        <a href="/about" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 block px-3 py-2 text-base font-medium rounded-md">O Nás</a>
       </div>
     </div>
   </div>
 </nav>
 
 <script>
-  // Mobile menu toggle
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileMenuButton = document.getElementById("menu-button")
+  const mobileMenuOpen = document.getElementById("menu-open");
+  const mobileMenuClose = document.getElementById("menu-close");
+  const mobileMenu = document.getElementById("mobile-menu");
 
-  if (mobileMenuBtn && mobileMenu) {
-    mobileMenuBtn.addEventListener('click', () => {
-      const isHidden = mobileMenu.style.display === 'none';
-      mobileMenu.style.display = isHidden ? 'block' : 'none';
-      
-      // Update button icon
-      const icon = mobileMenuBtn.querySelector('Icon');
-      if (isHidden) {
-        icon?.setAttribute("name", "menuClose");
-        //icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>';
+  if(mobileMenu && mobileMenuOpen && mobileMenuClose && mobileMenuButton) {
+    mobileMenuButton.addEventListener("click", () => {
+      const isMenuClosed = mobileMenuClose.classList.contains("hidden");
+
+      if(isMenuClosed){
+        mobileMenuOpen.classList.add("hidden");
+        mobileMenuClose.classList.remove("hidden");
+        mobileMenu.style.display = "block";
       } else {
-        icon?.setAttribute("name", "menuOpen");
-        //icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>';
+        mobileMenuClose.classList.add("hidden");
+        mobileMenuOpen.classList.remove("hidden");
+        mobileMenu.style.display = "none";
       }
     });
   }
